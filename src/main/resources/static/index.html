@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Server-Sent Events Sample</title>
+<style>
+body {
+	font-family: sans-serif;
+}
+</style>
+<script>
+	function start() {
+
+		var channel = document.getElementById('url').value;
+
+		var eventSource = new EventSource(channel);
+
+		eventSource.onmessage = function(event) {
+
+			document.getElementById('message').innerHTML = event.data;
+		}
+	}
+</script>
+</head>
+
+<body>
+
+	<br>
+	<br> Sse url:
+	<input type="text" value="http://localhost:8080/sse/subscribe" id="url" />
+
+	<button onclick="start()">Subscribe</button>
+
+	<br>
+	<br> Message:
+	<span id="message"></span>
+
+</body>
+</html>
